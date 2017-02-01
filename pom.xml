@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.jive.myco</groupId>
+        <artifactId>parent</artifactId>
+        <version>50</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>jive.jci.salesforce-softphone</groupId>
+    <artifactId>jive-jci-salesforce-softphone</artifactId>
+    <name>JCI Salesforce Softphone</name>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <scm>
+        <connection>scm:git:ssh://git@github.com:jive/jive.jci.salesforce-softphone.git</connection>
+        <developerConnection>scm:git:git@github.com:jive/jive.jci.salesforce-softphone.git</developerConnection>
+        <url>https://github.com/jive/jive.jci.salesforce-softphone.git</url>
+        <tag>0.0.0</tag>
+    </scm>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>node_modules</directory>
+                            <excludes>
+                                <exclude>**/*</exclude>
+                            </excludes>
+                            <followSymlinks>false</followSymlinks>
+                            <useDefaultExcludes>false</useDefaultExcludes>
+                        </fileset>
+                        <fileset>
+                            <directory>.repository</directory>
+                            <excludes>
+                                <exclude>**/*</exclude>
+                            </excludes>
+                            <followSymlinks>false</followSymlinks>
+                            <useDefaultExcludes>false</useDefaultExcludes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.jive.myco.tools</groupId>
+                <artifactId>jazz-maven-plugin</artifactId>
+                <!-- The configuration for the jeb-package-static-web goal should be global such
+                  that the execution triggered during the build and the execution triggered
+                  from the command line via the jeb-package-static-web-exploded goal can both
+                  share the same configuration. -->
+                <configuration>
+                    <gruntSource>
+                        <outputPath>./target/webroot</outputPath>
+                    </gruntSource>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-package-static-web</id>
+                        <goals>
+                            <goal>jeb-package-static-web</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,9 @@
+#IDE
+.vscode
+
+#NPM
+node_modules
+
+#MISC
+.DS_Store
+target

@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata":true,
+    "preserveConstEnums": true,
+    "noImplicitAny" : true,
+    "noImplicitReturns": true,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "types" : [],
+    "sourceMap": true,
+    "baseUrl": "."
+  },
+  "formatCodeOptions": {
+    "indentSize": 4,
+    "tabSize": 4
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
