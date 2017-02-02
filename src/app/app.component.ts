@@ -23,12 +23,29 @@ export class AppComponent {
     //   observer.complete()
     // } )
 
-    let source = Rx.Observable.interval(1000).take(5).map( ( x: any ) => {
-      return {id:x}
-    })
+    let stopEl = document.querySelector('#stopSequence')
+
+    let source = Rx.Observable.interval(1000)
+      .take(6)
+      .takeUntil( Rx.Observable.fromEvent( stopEl, 'click' ) )
+      .map( ( x: any ) => {
+        return {id:x}
+      })
+
+      // var clickObs = Rx.Observable.fromEvent( document.querySelector('#stopSequence'), 'click', (el) => {
+      //   console.log('EL', el)
+      // } ).map((x) => {
+      //   console.log('CLICK!!!', x)
+      // })
 
     this.ObservableList.push( source )
     source = Object.assign(source, {obj: {}, index: this.ObservableList.length, completed: false})
+
+    let stopEventListener = {}
+
+    stopEl.addEventListener('click', (e) => {
+      console.log('CLICK', e)
+    })
 
   }
 
